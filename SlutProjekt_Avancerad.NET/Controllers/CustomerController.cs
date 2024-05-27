@@ -1,4 +1,5 @@
 ﻿using ClassModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Projekt_Avancerad.NET.Data;
@@ -17,6 +18,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             _customer = customer;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Customer>>> GetAllCustomers()
         {
@@ -36,6 +38,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("{id:int}/Get Info On Customer By Specific CustomerID/")]
         public async Task<ActionResult<List<Customer>>> GetSpecificCustomer(int id)
         {
@@ -79,6 +82,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("/Get Customers By Their Recent Bookings/")]
         public async Task<ActionResult<List<Customer>>> GetRecentCustomers()
         {

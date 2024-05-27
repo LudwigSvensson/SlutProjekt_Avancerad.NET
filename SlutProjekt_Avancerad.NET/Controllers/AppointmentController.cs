@@ -1,4 +1,5 @@
 ﻿using ClassModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SlutProjekt_Avancerad.NET.Services.Interfaces;
@@ -15,6 +16,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             _appointment = appointment;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Appointment>>> GetAllAppointments()
         {

@@ -1,4 +1,5 @@
 ﻿using ClassModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
@@ -18,6 +19,8 @@ namespace SlutProjekt_Avancerad.NET.Controllers
 
         }
 
+
+        [Authorize]
         [HttpPut("{appointmentId:int}/Update Appointment/")]
         public async Task<ActionResult<Appointment>> UpdateAppointment(int appointmentId, Appointment updatedAppointment)
         {
@@ -42,6 +45,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{appointmentId:int}/Delete Appointment/")]
         public async Task<ActionResult<Appointment>> CancelAppointment(int appointmentId)
         {
@@ -56,6 +60,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost("{customerID:int}/Create New Appointment For A Specific Customer/")]
         public async Task<ActionResult<Appointment>> BookNewAppointment(int customerID, Appointment newAppointment)
         {
@@ -83,6 +88,7 @@ namespace SlutProjekt_Avancerad.NET.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Appointment>>> SearchAppointments(DateTime? startDate, DateTime? endDate)
         {
@@ -97,6 +103,8 @@ namespace SlutProjekt_Avancerad.NET.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"{ex.Message}");
             }
         }
+
+        [Authorize]
         [HttpGet("Get All Historically changed bookings")]
         public async Task<ActionResult<IEnumerable<AppointmentHistory>>> GetAppointmentHistory()
         {
